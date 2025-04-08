@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { GrLanguage } from "react-icons/gr";
 import { IoMdHeart } from "react-icons/io";
 import { BsCart2 } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { GiUnfriendlyFire } from "react-icons/gi";
+import { FaDragon } from "react-icons/fa";
 
 const ViewDataDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [Data, setData] = useState();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const role = useSelector((state) => state.auth.role);
@@ -28,14 +31,14 @@ const ViewDataDetails = () => {
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
-    bookid: id, 
+    bookid: id,
   };
 
   const handleFavourite = async () => {
     const response = await axios.put(
       "http://localhost:1000/api/v1/add-book-to-favourite",
       {},
-      {headers}
+      { headers }
     );
     alert(response.data.message);
   };
@@ -44,7 +47,7 @@ const ViewDataDetails = () => {
     const response = await axios.put(
       "http://localhost:1000/api/v1/add-to-cart",
       {},
-      {headers}
+      { headers }
     );
     alert(response.data.message);
   };
@@ -84,8 +87,9 @@ const ViewDataDetails = () => {
                     Favourites
                   </span>
                 </button>
-                <button className="bg-white rounded-full text-2xl lg:text-3xl p-2 text-zinc-800 transition transform hover:scale-110 hover:bg-zinc-700 hover:text-white duration-200"
-                   onClick={handleCart}
+                <button
+                  className="bg-white rounded-full text-2xl lg:text-3xl p-2 text-zinc-800 transition transform hover:scale-110 hover:bg-zinc-700 hover:text-white duration-200"
+                  onClick={handleCart}
                 >
                   <BsCart2 />
                   <span className="ml-2 block lg:hidden text-sm">
@@ -125,9 +129,17 @@ const ViewDataDetails = () => {
             <p className="flex mt-4 items-center text-zinc-400 text-sm md:text-base">
               <GrLanguage className="mr-2" /> {Data.language}
             </p>
-            <p className="mt-4 text-red-600 text-xl md:text-3xl font-semibold">
+            <p className="mt-4 text-zinc-400 text-xl md:text-3xl font-semibold font-style">
               Price: ₹ {Data.price}
             </p>
+            {/* Read Button */}
+            <button
+              className="mt-6 bg-gradient-to-r from-red-700 via-red-800 to-red-900 text-white text-lg px-6 py-2 rounded-l shadow-lg transition transform hover:scale-110 hover:bg-red-700 duration-200 flex items-center space-x-3"
+              onClick={() => navigate(`/read-book/${id}`)}
+            >
+              <span className="text-xl font-bold font-['Rock+Salt', cursive]">Read</span>
+              <FaDragon className="text-3xl animate-pulse" />
+            </button>
           </div>
         </div>
       ) : (

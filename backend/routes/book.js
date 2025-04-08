@@ -23,6 +23,7 @@ router.post("/add-book", authenticateToken, async (req, res) => {
       price: req.body.price,
       desc: req.body.desc,
       language: req.body.language,
+      pages: req.body.pages || [], // Accept pages as an array, default to an empty array
     });
     await book.save();
     res.status(200).json({ message: "Book added successfully" });
@@ -42,6 +43,7 @@ router.put("/update-book", authenticateToken, async (req, res) => {
       price: req.body.price,
       desc: req.body.desc,
       language: req.body.language,
+      pages: req.body.pages, // Update pages if provided
     });
 
     res.status(200).json({ message: "Book updated successfully" });
@@ -49,6 +51,7 @@ router.put("/update-book", authenticateToken, async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
 
 // delete book - admin
 router.delete("/delete-book", authenticateToken, async (req, res) => {
@@ -88,12 +91,16 @@ router.get("/get-recent-books", async (req, res) => {
 router.get("/get-book-by-id/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const books = await Book.findById(id);
-    return res.json({ status: "Success", data: books });
+    const book = await Book.findById(id);
+    if (!book) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+    return res.json({ status: "Success", data: book });
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
 
 
 module.exports = router;

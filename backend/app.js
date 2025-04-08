@@ -13,6 +13,11 @@ const Order = require("./routes/order");
 app.use(cors());
 app.use(express.json());
 
+// Health check route
+app.get("/api/health", (req, res) => {
+    res.status(200).json({ message: "ok" });
+});
+
 // routes
 app.use("/api/v1", User);
 app.use("/api/v1", Books);
