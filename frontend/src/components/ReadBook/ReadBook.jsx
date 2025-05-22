@@ -12,7 +12,7 @@ const ReadBook = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:1000/api/v1/get-book-by-id/${id}`
+          `https://book-store-backend-fa0o.onrender.com/api/v1/get-book-by-id/${id}`
         );
         setBook(response.data.data); // Assuming `data.data` contains the book info
       } catch (error) {

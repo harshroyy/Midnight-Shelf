@@ -26,6 +26,8 @@ app.use("/api/v1", Cart);
 app.use("/api/v1", Order);
 
 // listening to port 
-app.listen(process.env.PORT, () => {
-    console.log(`Server Listening to port ${process.env.PORT}`);
+const PORT = process.env.PORT || 1000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
