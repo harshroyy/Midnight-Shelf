@@ -18,12 +18,11 @@ const Cart = () => {
     const fetchCartData = async () => {
       try {
         const res = await axios.get(
-          "https://book-store-backend-fa0o.onrender.com/api/v1/get-user-cart",
+          `${process.env.REACT_APP_API_URL}/api/v1/get-user-cart`,
           {
             headers,
           }
         );
-        // console.log(res);
         setCart(res.data.data);
       } catch (error) {
         console.error("Failed to fetch cart data", error);
@@ -34,7 +33,7 @@ const Cart = () => {
 
   const deleteItem = async (bookid) => {
     const response = await axios.put(
-      `https://book-store-backend-fa0o.onrender.com/api/v1/remove-from-cart/${bookid}`,
+      `${process.env.REACT_APP_API_URL}/api/v1/remove-from-cart/${bookid}`,
       {},
       { headers }
     );
@@ -56,7 +55,7 @@ const Cart = () => {
   const PlaceOrder = async () => {
     try {
       const response = await axios.post(
-        `https://book-store-backend-fa0o.onrender.com/api/v1/place-order`,
+        `${process.env.REACT_APP_API_URL}/api/v1/place-order`,
         { order: Cart },
         { headers }
       );

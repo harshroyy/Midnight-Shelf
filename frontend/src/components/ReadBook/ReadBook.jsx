@@ -12,7 +12,7 @@ const ReadBook = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://book-store-backend-fa0o.onrender.com/api/v1/get-book-by-id/${id}`
+              `${process.env.REACT_APP_API_URL}/api/v1/get-book-by-id/${id}`,
         );
         setBook(response.data.data); // Assuming `data.data` contains the book info
       } catch (error) {

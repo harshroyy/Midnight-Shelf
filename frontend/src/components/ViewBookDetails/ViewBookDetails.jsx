@@ -21,7 +21,7 @@ const ViewDataDetails = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `https://book-store-backend-fa0o.onrender.com/api/v1/get-book-by-id/${id}`
+         `${process.env.REACT_APP_API_URL}/api/v1/get-book-by-id/${id}`
       );
       setData(response.data.data);
     };
@@ -36,7 +36,7 @@ const ViewDataDetails = () => {
 
   const handleFavourite = async () => {
     const response = await axios.put(
-      "https://book-store-backend-fa0o.onrender.com/api/v1/add-book-to-favourite",
+      `${process.env.REACT_APP_API_URL}/api/v1/add-book-to-favourite`,
       {},
       { headers }
     );
@@ -45,7 +45,7 @@ const ViewDataDetails = () => {
 
   const handleCart = async () => {
     const response = await axios.put(
-      "https://book-store-backend-fa0o.onrender.com/api/v1/add-to-cart",
+     `${process.env.REACT_APP_API_URL}/api/v1/add-to-cart`,
       {},
       { headers }
     );

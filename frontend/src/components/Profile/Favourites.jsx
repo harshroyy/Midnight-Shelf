@@ -12,7 +12,7 @@ const Favourites = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "https://book-store-backend-fa0o.onrender.com/api/v1/get-favourite-books",
+        `${process.env.REACT_APP_API_URL}/api/v1/get-favourite-books`,
         { headers }
       );
       setFavouriteBooks(response.data.data);
@@ -25,7 +25,7 @@ const Favourites = () => {
       {FavouriteBooks.length === 0 && (
         <div className="text-5xl h-[100%] font-semibold text-zinc-500 flex items-center justify-center flex-col w-full">
           No Favourite Books
-          <img src="./bookmark.png" alt="bookmark"  className="px-6 h-[15vh] my-8"/>
+          <img src="./bookmark.png" alt="bookmark" className="px-6 h-[15vh] my-8" />
         </div>
       )}
 

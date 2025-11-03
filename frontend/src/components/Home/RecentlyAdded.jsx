@@ -8,11 +8,11 @@ const RecentlyAdded = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "https://book-store-backend-fa0o.onrender.com/api/v1/get-recent-books"
+        `${process.env.REACT_APP_API_URL}/api/v1/get-recent-books`
       );
       setData(response.data.data);
     };
-    fetch()
+    fetch();
   }, []);
 
   return (

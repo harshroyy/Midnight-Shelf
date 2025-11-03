@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const UserOrderHistory = () => {
   const [OrderHistory, setOrderHistory] = useState();
@@ -14,7 +14,7 @@ const UserOrderHistory = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `https://book-store-backend-fa0o.onrender.com/api/v1/get-order-history`,
+        `${process.env.REACT_APP_API_URL}/api/v1/get-order-history`,
         { headers }
       );
       setOrderHistory(response.data.data);
@@ -71,7 +71,7 @@ const UserOrderHistory = () => {
             </div>
           </div>
           {OrderHistory.map((items, i) => (
-            <div className="bg-zinc-800 w-full rounded py-2 px-4 flex ">
+            <div className="bg-zinc-800 w-full rounded py-2 px-4 flex " key={i}>
               <div className="w-[3%]">
                 <h1 className="text-center">{i + 1}</h1>
               </div>

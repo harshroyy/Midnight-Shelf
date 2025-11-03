@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Loader from '../components/Loader/Loader'
-import BookCard from '../components/BookCard/BookCard'
+import Loader from '../components/Loader/Loader';
+import BookCard from '../components/BookCard/BookCard';
 
 const AllBooks = () => {
   const [Data, setData] = useState();
+
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "https://book-store-backend-fa0o.onrender.com/api/v1/get-all-books"
+        `${process.env.REACT_APP_API_URL}/api/v1/get-all-books`
       );
       setData(response.data.data);
     };
-    fetch()
+    fetch();
   }, []);
 
   return (
@@ -29,7 +30,7 @@ const AllBooks = () => {
           ))}
       </div>
     </div>
-  )
+  );
 };
 
 export default AllBooks;

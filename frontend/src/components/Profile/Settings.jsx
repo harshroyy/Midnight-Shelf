@@ -20,7 +20,7 @@ const Settings = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "https://book-store-backend-fa0o.onrender.com/api/v1/get-user-information",
+        `${process.env.REACT_APP_API_URL}/api/v1/get-user-information`,
         { headers }
       );
       setProfileData(response.data);
@@ -31,7 +31,7 @@ const Settings = () => {
 
   const submitAddress = async () => {
     const response = await axios.put(
-      "https://book-store-backend-fa0o.onrender.com/api/v1/update-address",
+      `${process.env.REACT_APP_API_URL}/api/v1/update-address`,
       Value,
       { headers }
     );

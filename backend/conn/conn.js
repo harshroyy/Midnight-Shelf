@@ -1,13 +1,22 @@
 const mongoose = require("mongoose");
 
-const conn = async() => {
-     try {
-        await mongoose.connect(`${process.env.URI}`);  
-        console.log("connected to database")
-     }
-     catch (error) {
-        console.log("Server not found")
-     }
-}
+const conn = async () => {
+  try {
+    const mongoURI = process.env.URI;
+
+    if (!mongoURI) {
+      throw new Error("MongoDB URI is missing in .env file");
+    }
+
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("MongoDB connection error:", error.message);
+  }
+};
 
 conn();

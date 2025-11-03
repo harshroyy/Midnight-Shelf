@@ -8,14 +8,16 @@ const BookCard = ({ data, favourite }) => {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     bookid: data._id,
   };
+
   const handleRemoveBook = async () => {
-    const response  = await axios.put(
-        "https://book-store-backend-fa0o.onrender.com/api/v1/remove-book-from-favourite",
-        {},
-        { headers }
+    const response = await axios.put(
+      `${process.env.REACT_APP_API_URL}/api/v1/remove-book-from-favourite`,
+      {},
+      { headers }
     );
     alert(response.data.message);
-  }
+  };
+
   return (
     <div className="bg-zinc-800 rounded p-4 flex flex-col transform transition-transform duration-300 ease-out hover:scale-105">
       <Link to={`/view-book-details/${data._id}`}>
@@ -35,19 +37,18 @@ const BookCard = ({ data, favourite }) => {
             by {data.author}
           </p>
           <p className="mt-4 text-zinc-200 font-thin text-xl pb-4">
-            {" "}
-            ₹ {data.price}{" "}
+            ₹ {data.price}
           </p>
         </div>
       </Link>
       {favourite && (
-            <button
-              className="bg-red-950 font-thin px-4 py-2 rounded border border-red-950 text-red-50"
-              onClick={handleRemoveBook}
-            >
-              Remove from favourites
-            </button>
-          )}
+        <button
+          className="bg-red-950 font-thin px-4 py-2 rounded border border-red-950 text-red-50"
+          onClick={handleRemoveBook}
+        >
+          Remove from favourites
+        </button>
+      )}
     </div>
   );
 };
