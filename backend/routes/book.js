@@ -52,7 +52,6 @@ router.put("/update-book", authenticateToken, async (req, res) => {
   }
 });
 
-
 // delete book - admin
 router.delete("/delete-book", authenticateToken, async (req, res) => {
   try {
@@ -100,7 +99,5 @@ router.get("/get-book-by-id/:id", async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
-
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-require('dotenv').config();
-require('./conn/conn'); // Ensure this path is correct
+require("dotenv").config();
+require("./conn/conn"); // Ensure this path is correct
 const cors = require("cors");
 
 const User = require("./routes/user");
@@ -15,7 +15,7 @@ app.use(express.json());
 
 // Health check route
 app.get("/api/health", (req, res) => {
-    res.status(200).json({ message: "ok" });
+  res.status(200).json({ message: "ok" });
 });
 
 // routes
@@ -25,7 +25,7 @@ app.use("/api/v1", Favourite);
 app.use("/api/v1", Cart);
 app.use("/api/v1", Order);
 
-// listening to port 
+// listening to port
 const PORT = process.env.PORT || 1000;
 
 app.listen(PORT, () => {

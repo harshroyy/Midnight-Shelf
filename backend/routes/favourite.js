@@ -22,7 +22,10 @@ router.put("/add-book-to-favourite/", authenticateToken, async (req, res) => {
 });
 
 // remove book to favourite
-router.put("/remove-book-from-favourite/",authenticateToken,async (req, res) => {
+router.put(
+  "/remove-book-from-favourite/",
+  authenticateToken,
+  async (req, res) => {
     try {
       const { bookid, id } = req.headers;
       const userData = await User.findById(id);
@@ -35,13 +38,13 @@ router.put("/remove-book-from-favourite/",authenticateToken,async (req, res) => 
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
-  }
+  },
 );
 
 // get favourite books of a particular user
 router.get("/get-favourite-books/", authenticateToken, async (req, res) => {
   try {
-    const { id } = req.headers; 
+    const { id } = req.headers;
     if (!id) {
       return res.status(400).json({ message: "User ID is required" });
     }
@@ -58,11 +61,9 @@ router.get("/get-favourite-books/", authenticateToken, async (req, res) => {
       data: favouriteBooks,
     });
   } catch (error) {
-    console.error('Error in /get-favourite-books route:', error); // Detailed logging
+    console.error("Error in /get-favourite-books route:", error); // Detailed logging
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
-
 
 module.exports = router;

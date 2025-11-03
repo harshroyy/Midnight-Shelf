@@ -21,7 +21,7 @@ const ViewDataDetails = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-         `${process.env.REACT_APP_API_URL}/api/v1/get-book-by-id/${id}`
+        `${import.meta.env.VITE_API_URL}/api/v1/get-book-by-id/${id}`,
       );
       setData(response.data.data);
     };
@@ -36,18 +36,18 @@ const ViewDataDetails = () => {
 
   const handleFavourite = async () => {
     const response = await axios.put(
-      `${process.env.REACT_APP_API_URL}/api/v1/add-book-to-favourite`,
+      `${import.meta.env.VITE_API_URL}/api/v1/add-book-to-favourite`,
       {},
-      { headers }
+      { headers },
     );
     alert(response.data.message);
   };
 
   const handleCart = async () => {
     const response = await axios.put(
-     `${process.env.REACT_APP_API_URL}/api/v1/add-to-cart`,
+      `${import.meta.env.VITE_API_URL}/api/v1/add-to-cart`,
       {},
-      { headers }
+      { headers },
     );
     alert(response.data.message);
   };
@@ -137,7 +137,9 @@ const ViewDataDetails = () => {
               className="mt-6 bg-gradient-to-r from-red-700 via-red-800 to-red-900 text-white text-lg px-6 py-2 rounded-l shadow-lg transition transform hover:scale-110 hover:bg-red-700 duration-200 flex items-center space-x-3"
               onClick={() => navigate(`/read-book/${id}`)}
             >
-              <span className="text-xl font-bold font-['Rock+Salt', cursive]">Read</span>
+              <span className="text-xl font-bold font-['Rock+Salt', cursive]">
+                Read
+              </span>
               <FaDragon className="text-3xl animate-pulse" />
             </button>
           </div>

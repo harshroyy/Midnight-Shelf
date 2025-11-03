@@ -20,8 +20,8 @@ const Settings = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/v1/get-user-information`,
-        { headers }
+        `${import.meta.env.VITE_API_URL}/api/v1/get-user-information`,
+        { headers },
       );
       setProfileData(response.data);
       setValue({ address: response.data.address });
@@ -31,9 +31,9 @@ const Settings = () => {
 
   const submitAddress = async () => {
     const response = await axios.put(
-      `${process.env.REACT_APP_API_URL}/api/v1/update-address`,
+      `${import.meta.env.VITE_API_URL}/api/v1/update-address`,
       Value,
-      { headers }
+      { headers },
     );
     alert(response.data.message);
   };

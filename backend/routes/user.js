@@ -11,7 +11,9 @@ router.post("/sign-up", async (req, res) => {
     const { username, email, password, address } = req.body;
 
     if (username.length <= 4) {
-      return res.status(400).json({ message: "Username length should be greater than 3" });
+      return res
+        .status(400)
+        .json({ message: "Username length should be greater than 3" });
     }
 
     const existingUsername = await User.findOne({ username: username });
@@ -25,7 +27,9 @@ router.post("/sign-up", async (req, res) => {
     }
 
     if (password.length <= 5) {
-      return res.status(400).json({ message: "Password's length should be greater than 5" });
+      return res
+        .status(400)
+        .json({ message: "Password's length should be greater than 5" });
     }
 
     const hashPass = await bcrypt.hash(password, 10);
@@ -64,7 +68,9 @@ router.post("/sign-in", async (req, res) => {
           { name: existingUser.username },
           { role: existingUser.role },
         ];
-        const token = jwt.sign({ authClaims }, process.env.JWT_SECRET, { expiresIn: "30d" });
+        const token = jwt.sign({ authClaims }, process.env.JWT_SECRET, {
+          expiresIn: "30d",
+        });
         return res.status(200).json({
           id: existingUser._id,
           role: existingUser.role,
@@ -82,7 +88,7 @@ router.post("/sign-in", async (req, res) => {
 // Get user information
 router.get("/get-user-information", authenticateToken, async (req, res) => {
   try {
-    const { id } = req.headers; 
+    const { id } = req.headers;
     const data = await User.findById(id).select("-password");
     if (!data) {
       return res.status(404).json({ message: "User not found" });
@@ -92,7 +98,6 @@ router.get("/get-user-information", authenticateToken, async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
 
 // Update address
 router.put("/update-address", authenticateToken, async (req, res) => {

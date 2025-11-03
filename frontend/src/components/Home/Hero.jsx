@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 function Hero() {
   return (
@@ -13,8 +13,8 @@ function Hero() {
           haunted collection of volumes
         </p>
         <div className="mt-8">
-          <Link 
-            to="/all-books" 
+          <Link
+            to="/all-books"
             className="text-red-500 text-xl lg:text-2xl font-semibold border border-red-100  px-12 py-3 hover:bg-white rounded-full transition duration-300 shadow-lg"
           >
             Explore Reads
@@ -26,7 +26,7 @@ function Hero() {
           src="/rep1.png"
           alt="An eerie book cover collection"
           className="w-full h-auto lg:w-auto lg:h-auto object-cover"
-          style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
+          style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
         />
       </div>
     </div>

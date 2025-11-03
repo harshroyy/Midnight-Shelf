@@ -18,10 +18,10 @@ const Cart = () => {
     const fetchCartData = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/v1/get-user-cart`,
+          `${import.meta.env.VITE_API_URL}/api/v1/get-user-cart`,
           {
             headers,
-          }
+          },
         );
         setCart(res.data.data);
       } catch (error) {
@@ -33,9 +33,9 @@ const Cart = () => {
 
   const deleteItem = async (bookid) => {
     const response = await axios.put(
-      `${process.env.REACT_APP_API_URL}/api/v1/remove-from-cart/${bookid}`,
+      `${import.meta.env.VITE_API_URL}/api/v1/remove-from-cart/${bookid}`,
       {},
-      { headers }
+      { headers },
     );
     alert(response.data.message);
     setCart(Cart.filter((item) => item._id !== bookid)); // Update Cart after deletion
@@ -55,9 +55,9 @@ const Cart = () => {
   const PlaceOrder = async () => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/v1/place-order`,
+        `${import.meta.env.VITE_API_URL}/api/v1/place-order`,
         { order: Cart },
-        { headers }
+        { headers },
       );
       alert(response.data.message);
       navigate("/profile/orderHistory");

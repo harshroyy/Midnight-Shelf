@@ -26,11 +26,11 @@ const SignUp = () => {
         alert("All fields are required");
       } else {
         const response = await axios.post(
-          `${process.env.REACT_APP_API_URL}/api/v1/sign-up`,
-          Values
+          `${import.meta.env.VITE_API_URL}/api/v1/sign-up`,
+          Values,
         );
         alert(response.data.message);
-        navigate("/Login")
+        navigate("/Login");
       }
     } catch (error) {
       alert(error.response.data.message);

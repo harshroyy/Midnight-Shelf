@@ -8,7 +8,7 @@ const RecentlyAdded = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/v1/get-recent-books`
+        `${import.meta.env.VITE_API_URL}/api/v1/get-recent-books`,
       );
       setData(response.data.data);
     };
@@ -18,7 +18,11 @@ const RecentlyAdded = () => {
   return (
     <div className="text-white mt-8 px-4">
       <h4 className="font-thin text-2xl text-red-500">New Book Arrivals</h4>
-      {!Data && <div className="flex items-center justify-center my-8"><Loader/></div>}
+      {!Data && (
+        <div className="flex items-center justify-center my-8">
+          <Loader />
+        </div>
+      )}
       <div className="my-8 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {Data &&
           Data.map((items, i) => (

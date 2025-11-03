@@ -7,6 +7,7 @@ Welcome to the **Book Store Web Application**! This project is a full-stack web 
 ## Features
 
 ### **Frontend**
+
 - Built with **React** and **Vite** for a fast and modern user interface.
 - Responsive design using **TailwindCSS** for an optimized experience across devices.
 - Key features:
@@ -17,6 +18,7 @@ Welcome to the **Book Store Web Application**! This project is a full-stack web 
   - Dynamic navigation bar and hero section.
 
 ### **Backend**
+
 - Developed using **Node.js** with the **Express.js** framework.
 - Database integration using **MongoDB** for data persistence.
 - Secure authentication using **JWT (JSON Web Tokens)**.

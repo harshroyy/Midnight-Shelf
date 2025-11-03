@@ -33,7 +33,6 @@ router.post("/place-order", authenticateToken, async (req, res) => {
   }
 });
 
-
 // Get order history
 router.get("/get-order-history", authenticateToken, async (req, res) => {
   try {
@@ -79,16 +78,16 @@ router.get("/get-all-orders", authenticateToken, async (req, res) => {
 
 // update order --admin
 router.put("/update-status/:id", authenticateToken, async (req, res) => {
-   try {
-     const {id} = req.params;
-     await Order.findByIdAndUpdate(id, {status: req.body.status})
-     return res.json({
+  try {
+    const { id } = req.params;
+    await Order.findByIdAndUpdate(id, { status: req.body.status });
+    return res.json({
       status: "Success",
       message: "Status Updated Successfully",
     });
-    } catch (error) {
+  } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });
-   }
-})
+  }
+});
 
 module.exports = router;
