@@ -6,11 +6,10 @@ function Hero() {
     <div className="h-[75vh] flex flex-col md:flex-row items-center justify-center bg-gradient-to-r from-gray-800 to-black">
       <div className="w-full mb-12 md:mb-0 lg:w-3/6 flex flex-col items-center lg:items-start justify-center px-6">
         <h1 className="text-4xl lg:text-6xl font-semibold text-red-500 text-center lg:text-left transition duration-300">
-          Summon Your Next Hellish Read
+          Harrow & Hollow — Horror Books Online
         </h1>
         <p className="mt-4 md:mb-0 lg:text-xl text-zinc-300 font-thin text-center lg:text-left">
-          Unveil twisted tales, forbidden knowledge, and dark inspiration in our
-          haunted collection of volumes
+          Browse curated horror novels, anthologies, and cult classics. Fast shipping, secure checkout, and a selection for every kind of fear.
         </p>
         <div className="mt-8">
           <Link

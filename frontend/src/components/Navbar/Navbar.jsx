@@ -37,10 +37,10 @@ function Navbar() {
       <nav className="z-50 relative flex bg-zinc-800 text-white px-8 py-4 items-center justify-between">
         <Link to="/" className="flex items-center">
           <img className="h-10 me-4" src="/logo.png" alt="logo" />
-          <h1 className="text-2xl font-thin">Hellscript</h1>
+          <h1 className="text-2xl font-thin">Midnight Shelf</h1>
         </Link>
 
-        <div className="nav-links-hellscript block md:flex items-center gap-4">
+        <div className="nav-links-midnight-shelf block md:flex items-center gap-4">
           <div className="hidden md:flex items-center gap-4 font-thin">
             {links.map((items, i) => (
               <div className="flex items-center">
